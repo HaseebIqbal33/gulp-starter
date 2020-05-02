@@ -1,0 +1,48 @@
+@mixin offset-margin($margin, $value){
+  margin-#{$margin}: $value;
+}
+
+@for $i from 1 through 10 {
+  @each $margin in top, left, bottom, right {
+    .margin-#{$margin}-#{5 * $i}{
+      @include offset-margin($margin, 5px * $i) 
+    }
+  }
+}
+
+section {
+  @include make-row();
+  article {
+    @include make-md-column(12);
+    @include make-xs-column(6);
+  }
+}
+.column-offset {
+  @include make-sm-column(8);
+  @include make-sm-column-offset(2);
+}
+.vertical-content-center {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+// show animation on display block
+.label-primary {
+    animation: grow .3s ease-in-out;
+}
+@keyframes grow {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+  1% {
+    display: block;
+    opacity: 0;
+    transform: scale(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
